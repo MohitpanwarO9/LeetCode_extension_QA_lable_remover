@@ -11,22 +11,53 @@ console.log(hostname, "\n",pathName)
 const pageName = pathName[1];
 console.log(pageName);
 
-if(pageName === "problemset"){
-    console.log("Hello heloo")
-    setTimeout(() => {
-        const POTD_lable = document.querySelector('a[href*="/problems/"] p.text-sd-hard, a[href*="/problems/"] p.text-sd-medium, a[href*="/problems/"] p.text-sd-easy');
-        console.log(POTD_lable);
-        if(POTD_lable){
-            POTD_lable.remove()
+let count = 0;
+function removeFromProblemSet(){
+    console.log("hello hello")
+    if(count) return;
+
+     const potd_lable = document.querySelector('a[href*="/problems/"] p.text-sd-hard, a[href*="/problems/"] p.text-sd-medium, a[href*="/problems/"] p.text-sd-easy');
+        
+        console.log(potd_lable);
+        if(potd_lable){
+            count += 1;
+            potd_lable.remove()
         }
-        // console.log(p);
-    }, 5000);
 }
 
-if(pageName === "problems"){
+function removeFromProblem(){
     const lable = document.querySelector(".text-difficulty-hard, .text-difficulty-easy, .text-difficulty-medium")
     
     if(lable){
         lable.remove();
     }
 }
+const observer = new MutationObserver(()=>{
+    if(pageName === 'problemset'){
+        removeFromProblemSet();
+    }
+    if(pageName === 'problems'){
+        removeFromProblem();
+    }
+});
+
+observer.observe(document.body,{
+    childList : true,
+    subtree : true
+})
+
+
+if(pageName === "problemset"){
+    console.log("Hello heloo")
+    setTimeout(() => {
+        
+    }, 5000);
+}
+
+// if(pageName === "problems"){
+//     const lable = document.querySelector(".text-difficulty-hard, .text-difficulty-easy, .text-difficulty-medium")
+    
+//     if(lable){
+//         lable.remove();
+//     }
+// }
