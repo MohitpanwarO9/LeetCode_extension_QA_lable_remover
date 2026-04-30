@@ -14,7 +14,7 @@ console.log(pageName);
 if(pageName === "problemset"){
     console.log("Hello heloo")
     setTimeout(() => {
-        const POTD_lable = document.querySelector('a[href*="/problems/"] p.text-sd-hard');
+        const POTD_lable = document.querySelector('a[href*="/problems/"] p.text-sd-hard, a[href*="/problems/"] p.text-sd-medium, a[href*="/problems/"] p.text-sd-easy');
         console.log(POTD_lable);
         if(POTD_lable){
             POTD_lable.remove()
